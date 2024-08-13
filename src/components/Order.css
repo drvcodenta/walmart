@@ -1,0 +1,89 @@
+.container {
+    padding: 10px 50px; /* Apply left padding */
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1 {
+    margin: auto;
+    padding-bottom: 20px;
+}
+.btn-time {
+   
+    width: 140px;
+    height: 30px;
+    border: 0.5px solid grey;
+    margin-bottom: 10px; /* Add space below the button */
+    position: relative; /* Position relative to control the arrow positioning */
+}
+
+.btn-time + svg {
+    margin-left: 10px; /* Add space between button and arrow */
+    vertical-align: middle; /* Align arrow with middle of button */
+}
+
+.orderr {
+    
+    display: flex;
+    align-items: center; 
+    padding: 10px 0;
+    margin-bottom: 10px; 
+   border:1px solid rgb(211, 200, 200);
+    padding-left: 30px; 
+    background-color:rgb(244, 243, 243);
+}
+
+.orderr img {
+    height: 130px; 
+    width: 160px;
+    margin-right: 8px;
+    
+}
+
+.delivery {
+    padding-left: 20px; /* Add left padding for the delivery section */
+}
+
+.delivery h2 {
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+}
+
+.delivery p {
+    margin: 5px 0; /* Add space between date and title */
+}
+
+.rate {
+    display: flex;
+ 
+    align-items: flex-start; 
+  
+    display: flex;
+    
+}
+
+.rate p {
+    margin-bottom: 5px; 
+}
+
+.rate .stars {
+    font-size: 1rem; 
+    
+}
+.orders{
+    display: flex;
+    flex-direction: column;
+
+}
+.orders p{
+    margin-top:1px;
+    margin-left: 43px;
+}
+.return{
+    border-radius: 10px;
+    border:1.5px solid grey;
+}
+.return:hover{
+    background-color: rgb(227, 226, 226);;
+    cursor:pointer;
+}

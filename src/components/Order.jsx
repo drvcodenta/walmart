@@ -1,0 +1,90 @@
+import React from "react";
+import { FaArrowDown, FaCaretDown } from "react-icons/fa";
+import laptop from "../images/laptop.jpg";
+import "./Order.css";
+import { FaArrowDown19 } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+
+export const Order = () => {
+  const navigate = useNavigate();
+
+  const handleReturnClick = () => {
+    navigate("/return"); // Navigate to the return page
+  };
+
+  return (
+    <div className="container">
+      <h1>My Orders</h1>
+      <button className="btn-time">
+        Last 6 months <FaCaretDown className="arrow-icon" />
+      </button>
+
+      <div className="orderr">
+        <div className="orders">
+          <img src={laptop} />
+          <p>Laptop ₹53k</p>
+        </div>
+        <div className="delivery">
+          <h2>Deliverd</h2>
+          <p>Deliverd on Sat,10 Aug</p>
+          <div className="rate">
+            <p>Rate this Product</p>
+            <div className="stars">
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+            </div>
+          </div>
+          <button className="return" onClick={handleReturnClick}>
+            Return
+          </button>
+        </div>
+      </div>
+      <div className="orderr">
+        <div className="orders">
+          <img src={laptop} />
+          <p>Laptop ₹53k</p>
+        </div>
+        <div className="delivery">
+          <h2>Deliverd</h2>
+          <p>Deliverd on Sat,10 Aug</p>
+          <div className="rate">
+            <p>Rate this Product</p>
+            <div className="stars">
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+            </div>
+          </div>
+          <button className="return" onClick={handleReturnClick}>
+            Return
+          </button>
+        </div>
+      </div>
+      <div className="orderr">
+        <div className="orders">
+          <img src={laptop} />
+          <p>Laptop ₹53k</p>
+        </div>
+        <div className="delivery">
+          <h2>Deliverd</h2>
+          <p>Deliverd on Sat,10 Aug</p>
+          <div className="rate">
+            <p>Rate this Product</p>
+            <div className="stars">
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+              <span>⭐</span>
+            </div>
+          </div>
+          <button className="return" onClick={handleReturnClick}>
+            Return
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
