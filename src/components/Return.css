@@ -1,0 +1,155 @@
+.whole-page{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.image-text{
+    display:flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+.lapy img{
+    width:180px;
+    height:150px;
+}
+.details span{
+    color:blue;
+}
+.details span:hover{
+    cursor:pointer;
+    color: rgb(7, 189, 250);
+}
+
+
+/* .reason{
+  margin-top: -8px;;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reason input{
+  border:1px solid grey;
+    width:450px;
+    height:30px;
+    margin-right: 4px;;
+    padding-left: 7px;
+    padding-top: 5px;
+   
+} */
+
+
+.reason {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reason .MuiFormControl-root {
+  width: 280px; /* Set the width of the dropdown to 250px */
+  margin-right: 20px; /* Space between the dropdown and text input */
+}
+
+.reason input[type="text"] {
+  width: 280px; /* Set the width of the text input to 250px */
+  height: 60px; /* Keep the increased height */
+  padding: 0 16px; /* Padding for the text input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px; /* Larger font size */
+}
+
+
+
+
+
+.class{
+    padding-left: 13px;;
+}
+
+.image-section {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    margin-top: 15px; 
+    margin-bottom: 15px;
+  }
+  
+  .before, .after {
+   
+    display: flex;
+    flex-direction: column; /* Align content vertically within each section */
+    align-items: center; 
+   
+    width:30%;
+    height:200px;
+  }
+  
+  .before img {
+    border:1px solid grey;
+    width: 180px; /* Adjust the width of the image */
+    height: auto; /* Keep the aspect ratio of the image */
+    /* margin-top: 10px;  */
+  }
+  
+  .before p, .after p {
+    font-weight: bold; /* Make the text bold */
+    margin-bottom: 15px; /* Add space between the text and the image */
+  }
+  .return-img{
+    border:1px solid grey;
+    width:30%;
+    height: 200px;
+  }
+
+  
+  
+  .upload-box {
+    width: 80%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .upload-label {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+  }
+  
+  .upload-label p {
+    margin: 0;
+  }
+  .upload-label p:hover{
+    cursor: pointer;
+  }
+  
+  .preview-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .review{
+    margin-top: 5px;;
+    padding-top: 5px;
+    width:100px;
+    height:30px;
+    border-radius: 20px;
+    justify-content: center;
+    padding: 7px;;
+    align-items: center;
+    display: flex;
+    font-size:18px;
+  }
+  .confirm{
+    margin-left: 220px;
+  }
+  .review:hover{
+    background-color: red;
+    border:none;
+  }

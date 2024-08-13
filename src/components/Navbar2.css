@@ -1,0 +1,31 @@
+.navbarr {
+    background-color: rgb(220, 245, 253);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navbarr-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    height:30px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .navbar-item:hover {
+    text-decoration: underline;
+  }
+  

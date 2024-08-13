@@ -1,0 +1,193 @@
+
+
+
+
+ .containerr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative; 
+}
+
+.firstt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    padding-left: 7px;
+    padding-top: 5px;
+    position: relative; 
+}
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+    margin-top: 10px;
+    color: rgb(10, 10, 10);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overlay p {
+    font-size: 20px;
+    margin-bottom: 5px; 
+}
+
+.overlay h1 {
+    margin-top: 0; 
+    font-size: 2.7rem; 
+    font-weight: 400;
+}
+
+.shop-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: black;
+    background-color: white;
+    border: 1.5px solid black;
+    border-radius: 19px;
+    cursor: pointer;
+    width: 116px;
+    height: 38px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop-btn:hover {
+    border: 2.2px solid black;
+}
+
+
+.firstt img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    padding-top: 5px;
+    border-radius: 30px;
+}
+
+.secondd {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+    width: 30%; 
+    height: 100%; 
+    box-sizing: border-box; 
+    padding-top: 5px;;
+    padding-left: 10px;
+    
+}
+
+.img2 {
+    width: 100%; 
+    height: 38%; 
+    object-fit: cover; 
+    border-radius: 20px;
+} 
+.img3{
+    width: 100%; 
+    height: 58%; 
+    object-fit: cover; 
+    border-radius: 20px;
+}
+
+.secondd .text {
+    position: absolute;
+    top: 16%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: rgb(9, 8, 8);
+    font-size: 1.3rem;
+    font-weight: 200;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .secondd .text p {
+    margin: 0.5rem 0;
+  }
+  
+  .secondd .btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: white;
+    color: black;
+    border: 1.5px solid black;
+    border-radius: 19px;
+    cursor: pointer;
+  }
+  
+  .secondd .btn:hover {
+    background-color: #f0f0f0;
+  }
+  
+.secondd .textt {
+    position: absolute;
+    top: 52%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: rgb(9, 8, 8);
+    font-size: 1.4rem;
+    font-weight: 200;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .secondd .textt p {
+    margin: 0.5rem 0;
+  }
+  
+  .secondd .btnn {
+    margin-top: 0.6rem;
+    padding: 0.5rem 1.5rem;
+    background-color: white;
+    color: black;
+    border: 1.5px solid black;
+    border-radius: 19px;
+    cursor: pointer;
+    
+  }
+  
+  .secondd .btn:hover {
+    background-color: #f0f0f0;
+    border:2.2px solid black;
+  }
+  .wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+    margin-top: 10px;
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wall p {
+    font-size: 20px;
+    margin-bottom: 5px; 
+}
+
+.wall h1 {
+    margin-top: 0; 
+    font-size: 2.7rem; 
+    font-weight: 400;
+}
