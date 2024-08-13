@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 import "./Return.css";
 import laptop from "../images/laptop.jpg";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import Axios from "axios";
 
 export const Return = () => {
   const [reason, setReason] = useState("");
@@ -22,6 +23,17 @@ export const Return = () => {
       setIsCameraOpen(false); // Close the camera after image selection
     }
 
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ngmnmuma");
+
+    Axios.post(
+      "https://api.cloudinary.com/v1_1/dctz4wuix/image/upload",
+      formData
+    ).then((response) => {
+      console.log("Image URL: ", response.data.secure_url);
+    });
+
     console.log("Selected Image: ", file);
   };
 
@@ -29,21 +41,29 @@ export const Return = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
 
-      // Convert base64 to file
-      const file = base64ToFile(imageSrc, 'captured-image.jpg');
+      const file = base64ToFile(imageSrc, "captured-image.jpg");
 
-      // Save the file to the device
       saveFile(file);
 
       setSelectedImage(imageSrc);
       setIsCameraOpen(false); // Close the camera after capturing
 
       console.log("Captured Image: ", file);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "ngmnmuma");
+
+      Axios.post(
+        "https://api.cloudinary.com/v1_1/dctz4wuix/image/upload",
+        formData
+      ).then((response) => {
+        console.log("Image URL: ", response.data.secure_url);
+      });
     }
   };
 
   const base64ToFile = (base64String, filename) => {
-    const arr = base64String.split(',');
+    const arr = base64String.split(",");
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
     let n = bstr.length;
@@ -57,7 +77,7 @@ export const Return = () => {
   };
 
   const saveFile = (file) => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = URL.createObjectURL(file);
     link.download = file.name;
     document.body.appendChild(link);
@@ -142,7 +162,13 @@ export const Return = () => {
                   screenshotFormat="image/jpeg"
                   width="100%"
                 />
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "10px",
+                  }}
+                >
                   <button
                     onClick={capture}
                     style={{
