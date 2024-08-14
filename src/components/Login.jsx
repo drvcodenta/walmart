@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "./Login.css";
 import {useAuth} from '../utils/AuthContext';
 
@@ -15,7 +15,7 @@ export const Login = () => {
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("male");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSignIn = async () => {
     try {
@@ -25,10 +25,10 @@ export const Login = () => {
       });
       console.log("Sign In Response:", response.data);
       login();
-      navigate("/"); // Redirect to the home page
+      navigate("/");
     } catch (error) {
       console.error("Error signing in:", error);
-      setErrorMessage("Invalid email or password."); // Display error message
+      setErrorMessage("Invalid email or password."); 
     }
   };
 
@@ -39,15 +39,14 @@ export const Login = () => {
         password,
       });
       console.log("Sign Up Response:", response.data);
-      setDisplay(false); // Redirect to login after successful sign up
-      // Optionally reset form fields
+      setDisplay(false); 
       setEmail("");
       setPassword("");
       setFirstName("");
       setLastName("");
     } catch (error) {
       console.error("Error signing up:", error);
-      setErrorMessage("Sign up failed. Please try again."); // Display error message
+      setErrorMessage("Sign up failed. Please try again."); 
     }
   };
 
