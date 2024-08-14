@@ -1,6 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Home } from "../src/components/Home";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Navbar } from "../src/components/Navbar";
 import { Login } from "../src/components/Login";
 import { Cart } from "../src/components/Cart";
@@ -19,7 +18,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Link to="/login" />} /> 
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
           <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />
