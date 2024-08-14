@@ -1,0 +1,76 @@
+*{
+    text-align: center;
+  }
+  
+  .container{
+    height:400px;
+    width:50%;
+    background-color: grey;
+    margin:5% auto;
+    background-color: #edeff3;
+  }
+  input{
+    outline:none;
+  
+  }
+  .name{
+    width:40%;
+    height:30px;
+  
+  }
+  .otherfield{
+    width:81.5%;
+    height:30px;
+  }
+  .sign{
+    height:30px;
+    width:30%;
+    background-color:red;
+    color:white;
+    margin-right: 2px;;
+  }
+  .login{
+    height:40px;
+    width:30%;
+    background-color: rgb(5, 142, 246);
+    color:white;
+    
+    border-radius: 8px;
+  }
+  .name_cont{
+    margin-bottom:15px;
+  }
+  .main{
+    padding-top:62px;
+  }
+  .title{
+    color:black;
+  }
+  .signin{
+    padding-top:60px;
+  }
+  .gender-input {
+    margin: 10px 0;
+  }
+  #gender:hover{
+    cursor: pointer;
+  }
+  .gender-input label {
+    margin-right: 10px;
+  }
+  
+  .gender-input input[type="radio"] {
+    margin-left: 10px;
+  }
+  
+  .gender-input select {
+    padding: 5px;
+    margin-left: 10px;
+  }
+  button{
+    border:1.2px solid darkblue;
+    
+  }
+  button:hover{
+    cursor: pointer;
+  }
