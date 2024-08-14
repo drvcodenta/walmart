@@ -9,7 +9,12 @@ export const Return = () => {
   const [reason, setReason] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const [productAfterDeliveryUrl, setProductAfterDeliveryUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
+  const [result, setResult] = useState(null); 
   const webcamRef = useRef(null);
+
+  const productAtDeliveryUrl = "https://res.cloudinary.com/dctz4wuix/image/upload/v1723644688/grgnoby2xbbdbznud0sn.png";
 
   const handleChange = (event) => {
     setReason(event.target.value);
@@ -21,32 +26,32 @@ export const Return = () => {
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
       setIsCameraOpen(false); // Close the camera after image selection
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "ngmnmuma");
+
+      Axios.post(
+        "https://api.cloudinary.com/v1_1/dctz4wuix/image/upload",
+        formData
+      ).then((response) => {
+        console.log("Image URL: ", response.data.secure_url);
+        setProductAfterDeliveryUrl(response.data.secure_url); // Store the Cloudinary URL
+      });
+
+      console.log("Selected Image: ", file);
     }
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "ngmnmuma");
-
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/dctz4wuix/image/upload",
-      formData
-    ).then((response) => {
-      console.log("Image URL: ", response.data.secure_url);
-    });
-
-    console.log("Selected Image: ", file);
   };
 
   const capture = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
-
       const file = base64ToFile(imageSrc, "captured-image.jpg");
 
       saveFile(file);
 
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false); // Close the camera after capturing
+      setIsCameraOpen(false); 
 
       console.log("Captured Image: ", file);
       const formData = new FormData();
@@ -58,6 +63,7 @@ export const Return = () => {
         formData
       ).then((response) => {
         console.log("Image URL: ", response.data.secure_url);
+        setProductAfterDeliveryUrl(response.data.secure_url); 
       });
     }
   };
@@ -87,11 +93,39 @@ export const Return = () => {
 
   const openCamera = () => {
     setIsCameraOpen(true);
-    setSelectedImage(null); // Clear the previous image when reopening the camera
+    setSelectedImage(null); 
   };
 
   const closeCamera = () => {
     setIsCameraOpen(false);
+  };
+
+  const handleReviewClick = () => {
+    if (productAfterDeliveryUrl) {
+      setIsLoading(true); 
+      setResult(null);
+
+      const payload = {
+        url1: productAtDeliveryUrl,
+        url2: productAfterDeliveryUrl,
+      };
+
+      Axios.post("https://return-reduce-backend.onrender.com/check", payload)
+        .then((response) => {
+          console.log("API Response: ", response.data);
+          setResult(response.data);
+        })
+        .catch((error) => {
+          console.error("Error in API call: ", error);
+          setResult({ error: "An error occurred while processing the request." });
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      console.error("Product After Delivery image URL is missing.");
+      setResult({ error: "Product After Delivery image URL is missing." });
+    }
   };
 
   return (
@@ -148,7 +182,7 @@ export const Return = () => {
       <div className="image-section">
         <div className="before">
           <p>Product At Delivery</p>
-          <img src={laptop} alt="Product At Delivery" />
+          <img src={productAtDeliveryUrl} alt="Product at Delivery" />
         </div>
 
         <div className="after">
@@ -195,6 +229,7 @@ export const Return = () => {
                       cursor: "pointer",
                       flex: "1",
                     }}
+                    className="close-button"
                   >
                     Close Camera
                   </button>
@@ -240,8 +275,19 @@ export const Return = () => {
       </div>
       <div className="confirm">
         <p>Return Request will be confirmed after review.</p>
-        <button className="review">Review</button>
+        <button className="review" onClick={handleReviewClick}>
+          {isLoading ? "Reviewing..." : "Review"} 
+        </button>
       </div>
+
+      {isLoading && <div className="loader">Loading...</div>} 
+
+      {result && (
+        <div className="result">
+          <h3>Review Result:</h3>
+          <p>{result.message || JSON.stringify(result)}</p> 
+        </div>
+      )}
     </div>
   );
 };
