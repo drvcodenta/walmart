@@ -6,13 +6,16 @@ import "./Profile.css";
 export const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const webcamRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isAnalyzed, setIsAnalyzed] = useState(false);
+  const webcamRef = useRef(null);
 
   const openCamera = () => {
     setIsCameraOpen(true);
-    setSelectedImage(null); 
+    setSelectedImage(null);
+    setIsAnalyzed(false);
   };
 
   const closeCamera = () => {
@@ -23,10 +26,7 @@ export const Profile = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false); 
-      const file = base64ToFile(imageSrc, "captured-image.jpg");
-
-      uploadImage(file);
+      setIsCameraOpen(false);
     }
   };
 
@@ -57,7 +57,11 @@ export const Profile = () => {
         const cloudinaryUrl = response.data.secure_url;
         console.log("Cloudinary URL:", cloudinaryUrl);
 
-        sendUrlToBackend(cloudinaryUrl);
+        if (isAnalyzing) {
+          sendUrlToBackend(cloudinaryUrl);
+          setIsAnalyzing(false);
+          setIsAnalyzed(true);
+        }
       })
       .catch((error) => {
         console.error("Error uploading image to Cloudinary:", error);
@@ -65,13 +69,13 @@ export const Profile = () => {
   };
 
   const sendUrlToBackend = (cloudinaryUrl) => {
-    setLoading(true); 
+    setLoading(true);
     Axios.post("https://return-reduce-backend.onrender.com/getSize", {
       url: cloudinaryUrl,
     })
       .then((response) => {
         setResult(response.data);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error sending URL to backend:", error);
@@ -85,10 +89,16 @@ export const Profile = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        uploadImage(file); 
+        setIsAnalyzed(false);
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleAnalyze = () => {
+    setIsAnalyzing(true);
+    const file = base64ToFile(selectedImage, "analyzed-image.jpg");
+    uploadImage(file);
   };
 
   return (
@@ -183,100 +193,74 @@ export const Profile = () => {
       </div>
 
       {/* Full Body Image Capture Section */}
-      <div className="capture-section">
-        <h3>Upload Full Body Image</h3>
+      <div className={`capture-section ${isCameraOpen ? "expanded" : ""}`}>
+        <h3 className="camera-header">Upload Full Body Image</h3>
         <div className="upload-box">
           {isCameraOpen ? (
-            <div>
+            <div className="camera-container">
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                style={{ width: "100%", height: "auto" }}
+                width="100%"
               />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginTop: "10px",
-                }}
-              >
-                <button
-                  onClick={capture}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "5px",
-                    backgroundColor: "blue",
-                    color: "white",
-                    border: "none",
-                    cursor: "pointer",
-                    flex: "1",
-                    marginRight: "10px",
-                  }}
-                >
+              <div className="camera-buttons">
+                <button onClick={capture} className="capture-button">
                   Capture Photo
                 </button>
-                <button
-                  onClick={closeCamera}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "5px",
-                    backgroundColor: "red",
-                    color: "white",
-                    border: "none",
-                    cursor: "pointer",
-                    flex: "1",
-                  }}
-                >
+                <button onClick={closeCamera} className="close-button">
                   Close Camera
                 </button>
               </div>
             </div>
           ) : (
             <div>
-              {selectedImage ? (
+              {selectedImage && !isAnalyzed ? (
                 <div>
                   <img
                     src={selectedImage}
                     alt="Selected"
                     className="preview-img"
                   />
-                  <button onClick={openCamera}>Retake Photo</button>
+                  <div className="post-capture-buttons">
+                    <button onClick={handleAnalyze} className="analyze-button">
+                      Analyze Photo
+                    </button>
+                    <button onClick={openCamera} className="retake-button">
+                      Retake Photo
+                    </button>
+                  </div>
+                </div>
+              ) : selectedImage && isAnalyzed ? (
+                <div>
+                  <img
+                    src={selectedImage}
+                    alt="Selected"
+                    className="preview-img"
+                  />
+                  <div className="post-capture-buttons">
+                    <button
+                      onClick={() => {
+                        setSelectedImage(null);
+                        setResult(null);
+                      }}
+                      className="close-button"
+                    >
+                      Close
+                    </button>
+                    <button onClick={openCamera} className="retake-button">
+                      Retake Photo
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>
-                  <button
-                    onClick={openCamera}
-                    style={{
-                      padding: "10px",
-                      borderRadius: "5px",
-                      backgroundColor: "blue",
-                      color: "white",
-                      border: "none",
-                      cursor: "pointer",
-                    }}
-                  >
+                  <button onClick={openCamera} className="open-camera-button">
                     Open Camera
                   </button>
                   <p style={{ margin: "10px 0" }}>OR</p>
-                  <label
-                    htmlFor="file-input"
-                    style={{
-                      padding: "10px",
-                      borderRadius: "5px",
-                      border: "1px solid #ccc",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <p
-                      style={{
-                        textAlign: "center",
-                        margin: "0",
-                        color: "#333",
-                      }}
-                    >
-                      Choose from Device
-                    </p>
+                  <label htmlFor="file-input" className="file-input-label">
+                    <p className="file-input-text">Choose from Device</p>
                   </label>
                   <input
                     id="file-input"
