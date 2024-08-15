@@ -23,10 +23,7 @@ export const Profile = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false);  
-      const file = base64ToFile(imageSrc, "captured-image.jpg");
-
-      uploadImage(file);
+      setIsCameraOpen(false); 
       const file = base64ToFile(imageSrc, "captured-image.jpg");
 
       uploadImage(file);
