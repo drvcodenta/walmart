@@ -14,8 +14,7 @@ export const Profile = () => {
 
   const openCamera = () => {
     setIsCameraOpen(true);
-    setSelectedImage(null);
-    setIsAnalyzed(false);
+    setSelectedImage(null); 
   };
 
   const closeCamera = () => {
@@ -26,7 +25,10 @@ export const Profile = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false);
+      setIsCameraOpen(false); 
+      const file = base64ToFile(imageSrc, "captured-image.jpg");
+
+      uploadImage(file);
     }
   };
 
@@ -89,7 +91,7 @@ export const Profile = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        setIsAnalyzed(false);
+        uploadImage(file); 
       };
       reader.readAsDataURL(file);
     }
@@ -193,8 +195,8 @@ export const Profile = () => {
       </div>
 
       {/* Full Body Image Capture Section */}
-      <div className={`capture-section ${isCameraOpen ? "expanded" : ""}`}>
-        <h3 className="camera-header">Upload Full Body Image</h3>
+      <div className="capture-section">
+        <h3>Upload Full Body Image</h3>
         <div className="upload-box">
           {isCameraOpen ? (
             <div className="camera-container">
@@ -202,7 +204,7 @@ export const Profile = () => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                width="100%"
+                style={{ width: "100%", height: "auto" }}
               />
               <div className="camera-buttons">
                 <button onClick={capture} className="capture-button">
@@ -238,20 +240,7 @@ export const Profile = () => {
                     alt="Selected"
                     className="preview-img"
                   />
-                  <div className="post-capture-buttons">
-                    <button
-                      onClick={() => {
-                        setSelectedImage(null);
-                        setResult(null);
-                      }}
-                      className="close-button"
-                    >
-                      Close
-                    </button>
-                    <button onClick={openCamera} className="retake-button">
-                      Retake Photo
-                    </button>
-                  </div>
+                  <button onClick={openCamera}>Retake Photo</button>
                 </div>
               ) : (
                 <>
