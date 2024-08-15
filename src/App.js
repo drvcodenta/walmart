@@ -18,7 +18,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/" />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
           <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />

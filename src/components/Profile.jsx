@@ -12,7 +12,7 @@ export const Profile = () => {
 
   const openCamera = () => {
     setIsCameraOpen(true);
-    setSelectedImage(null); 
+    setSelectedImage(null);
   };
 
   const closeCamera = () => {
@@ -23,7 +23,7 @@ export const Profile = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false); 
+      setIsCameraOpen(false);
       const file = base64ToFile(imageSrc, "captured-image.jpg");
 
       uploadImage(file);
@@ -65,13 +65,13 @@ export const Profile = () => {
   };
 
   const sendUrlToBackend = (cloudinaryUrl) => {
-    setLoading(true); 
+    setLoading(true);
     Axios.post("https://return-reduce-backend.onrender.com/getSize", {
       url: cloudinaryUrl,
     })
       .then((response) => {
         setResult(response.data);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error sending URL to backend:", error);
@@ -85,7 +85,7 @@ export const Profile = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        uploadImage(file); 
+        uploadImage(file);
       };
       reader.readAsDataURL(file);
     }
@@ -183,16 +183,25 @@ export const Profile = () => {
       </div>
 
       {/* Full Body Image Capture Section */}
-      <div className="capture-section">
+      <div className="capture-section" style = {{
+        height: "100vh",
+      }}>
         <h3>Upload Full Body Image</h3>
-        <div className="upload-box">
+        <div className="upload-box" style = {{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "90%",
+          width: "100%",
+        }}>
           {isCameraOpen ? (
             <div>
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                width="100%"
+                style={{ width: "100%", height: "auto" }}
               />
               <div
                 style={{
@@ -240,8 +249,50 @@ export const Profile = () => {
                     src={selectedImage}
                     alt="Selected"
                     className="preview-img"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      objectFit: "contain",
+                      marginTop: "10px",
+                    }}
                   />
-                  <button onClick={openCamera}>Retake Photo</button>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <button
+                      onClick={openCamera}
+                      style={{
+                        padding: "10px",
+                        borderRadius: "5px",
+                        backgroundColor: "blue",
+                        color: "white",
+                        border: "none",
+                        cursor: "pointer",
+                        flex: "1",
+                        marginRight: "10px",
+                      }}
+                    >
+                      Retake Photo
+                    </button>
+                    <button
+                      onClick={closeCamera}
+                      style={{
+                        padding: "10px",
+                        borderRadius: "5px",
+                        backgroundColor: "red",
+                        color: "white",
+                        border: "none",
+                        cursor: "pointer",
+                        flex: "1",
+                      }}
+                    >
+                      Close Camera
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>
