@@ -1,8 +1,8 @@
 import React from "react";
-import { FaArrowDown, FaCaretDown } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
 import laptop from "../images/laptop.jpg";
 import "./Order.css";
-import { FaArrowDown19 } from "react-icons/fa6";
+// import { FaArrowDown19 } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 export const Order = () => {

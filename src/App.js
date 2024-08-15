@@ -9,6 +9,7 @@ import { Nav } from "../src/components/Nav";
 import { Return } from "./components/Return ";
 import { AuthProvider } from "./utils/AuthContext"; 
 import ProtectedRoute from './utils/ProtectedRoute';
+import { Home } from "./components/Home";
 
 function App() {
   return (
@@ -16,9 +17,11 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Nav />
+        {/* <Home /> */}
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* <Route path="/" element={<Navigate to="/" />} /> */}
+          <Route path="/" element={<ProtectedRoute element={<Home />} />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
           <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />
