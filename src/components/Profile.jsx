@@ -197,18 +197,43 @@ export const Profile = () => {
         <h3 className="camera-header">Upload Full Body Image</h3>
         <div className="upload-box">
           {isCameraOpen ? (
-            <div className="camera-container">
+            <div>
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 width="100%"
               />
-              <div className="camera-buttons">
-                <button onClick={capture} className="capture-button">
+              <div style={{
+                  display: "flex",
+                  // justifyContent: "space-between",
+                  marginTop: "10px",
+                }} 
+                >
+                <button
+                  onClick={capture}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: '#5cb85c',
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                    marginRight: "10px",
+                  }}
+                >
                   Capture Photo
                 </button>
-                <button onClick={closeCamera} className="close-button">
+                <button onClick={closeCamera} style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: '#d9534f',
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                  }}>
                   Close Camera
                 </button>
               </div>
@@ -222,11 +247,33 @@ export const Profile = () => {
                     alt="Selected"
                     className="preview-img"
                   />
-                  <div className="post-capture-buttons">
-                    <button onClick={handleAnalyze} className="analyze-button">
+                  <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "10px",
+                }}
+                  >
+                    <button onClick={handleAnalyze} style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: "#5cb85c",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                    marginRight: "10px",
+                  }}>
                       Analyze Photo
                     </button>
-                    <button onClick={openCamera} className="retake-button">
+                    <button onClick={openCamera} style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: '#d9534f',
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                  }}>
                       Retake Photo
                     </button>
                   </div>
@@ -238,17 +285,38 @@ export const Profile = () => {
                     alt="Selected"
                     className="preview-img"
                   />
-                  <div className="post-capture-buttons">
+                  <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "10px",
+                }}>
                     <button
                       onClick={() => {
                         setSelectedImage(null);
                         setResult(null);
                       }}
-                      className="close-button"
+                      style={{
+                      padding: "10px",
+                      borderRadius: "5px",
+                      backgroundColor: '#5cb85c',
+                      color: "white",
+                      border: "none",
+                      cursor: "pointer",
+                      flex: "1",
+                      marginRight: "10px",
+                    }}
                     >
                       Close
                     </button>
-                    <button onClick={openCamera} className="retake-button">
+                    <button onClick={openCamera} style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: '#d9534f',
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                  }} >
                       Retake Photo
                     </button>
                   </div>
@@ -274,13 +342,19 @@ export const Profile = () => {
             </div>
           )}
         </div>
-        {loading && <p>Loading...</p>}
-        {result && (
+        <div>
+          {loading && (
+            <div className="overlays">
+              <div className="spinner"></div>
+            </div>
+          )}
+        </div>
+        {/* {result && (
           <div className="result-section">
             <h4>Result:</h4>
             <p>{JSON.stringify(result)}</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
