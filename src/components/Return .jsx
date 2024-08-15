@@ -13,6 +13,16 @@ export const Return = () => {
   const [isLoading, setIsLoading] = useState(false); 
   const [result, setResult] = useState(null); 
   const webcamRef = useRef(null);
+  const [isPromptVisible, setIsPromptVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    handleReviewClick();
+    setIsPromptVisible(true);
+  };
+
+  const handleClosePrompt = () => {
+    setIsPromptVisible(false);
+  };
 
   const productAtDeliveryUrl = "https://res.cloudinary.com/dctz4wuix/image/upload/v1723644688/grgnoby2xbbdbznud0sn.png";
 
@@ -208,7 +218,7 @@ export const Return = () => {
                     style={{
                       padding: "10px",
                       borderRadius: "5px",
-                      backgroundColor: "blue",
+                      backgroundColor: '#007bff',
                       color: "white",
                       border: "none",
                       cursor: "pointer",
@@ -223,7 +233,7 @@ export const Return = () => {
                     style={{
                       padding: "10px",
                       borderRadius: "5px",
-                      backgroundColor: "red",
+                      backgroundColor: '#d9534f',
                       color: "white",
                       border: "none",
                       cursor: "pointer",
@@ -274,20 +284,32 @@ export const Return = () => {
         </div>
       </div>
       <div className="confirm">
-        <p>Return Request will be confirmed after review.</p>
-        <button className="review" onClick={handleReviewClick}>
-          {isLoading ? "Reviewing..." : "Review"} 
-        </button>
-      </div>
+      <p>Return Request will be confirmed after review.</p>
 
-      {isLoading && <div className="loader">Loading...</div>} 
 
-      {result && (
-        <div className="result">
-          <h3>Review Result:</h3>
-          <p>{result.message || JSON.stringify(result)}</p> 
+      <div>
+      <button className="review" onClick={handleButtonClick}>
+        {isLoading ? "Reviewing... " : "Review"}
+        {isLoading && (
+          <div className="overlays">
+            <div className="spinner"></div>
+          </div>
+        )}
+      </button>
+
+      {isPromptVisible && result && (
+        <div className="prompt-box">
+          <div className="prompt-content">
+            <span className="prompt-title">Review Result:</span>
+            <span className="prompt-message"> 
+              {JSON.stringify(result.result)}
+            </span>
+            <button className="close-button" onClick={handleClosePrompt}>Close</button>
+          </div>
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 };

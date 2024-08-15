@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar } from "../src/components/Navbar";
 import { Login } from "../src/components/Login";
 import { Cart } from "../src/components/Cart";
@@ -17,10 +17,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Nav />
-        {/* <Home /> */}
         <Routes>
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/" element={<Navigate to="/" />} /> */}
           <Route path="/" element={<ProtectedRoute element={<Home />} />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="profile" element={<ProtectedRoute element={<Profile />} />} />

@@ -11,6 +11,7 @@ export const Profile = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isAnalyzed, setIsAnalyzed] = useState(false);
   const webcamRef = useRef(null);
+  
 
   const openCamera = () => {
     setIsCameraOpen(true);
@@ -134,31 +135,23 @@ export const Profile = () => {
       </nav>
 
       <div className="about-me-section">
-        <h2>About Me</h2>
+        {/* <h2>About Me</h2> */}
         <form>
-          <label>Personal Quote</label>
-          <textarea defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac leo sed sapien rutrum interdum id at urna. In ac velit sapien. Curabitur lacus felis, porttitor vel pulvinar sed, auctor a eros." />
+          {/* <label>Personal Quote</label>
+          <textarea defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac leo sed sapien rutrum interdum id at urna. In ac velit sapien. Curabitur lacus felis, porttitor vel pulvinar sed, auctor a eros." /> */}
           <div className="personal-info">
-            <h3>Personal Info</h3>
+            <h2>Personal Info</h2>
             <div className="info-field">
-              <label>First Name</label>
-              <input type="text" value="Lailanie" />
+              <label>Name</label>
+              <input type="text" value="Lailanie Smith" />
             </div>
             <div className="info-field">
-              <label>Last Name</label>
-              <input type="text" value="Smith" />
-            </div>
-            <div className="info-field">
-              <label>Preferred First Name (optional)</label>
-              <input type="text" value="Lai Lai" />
-            </div>
-            <div className="info-field">
-              <label>Contact Email</label>
+              <label>Email</label>
               <input type="email" value="lsmith@gmail.com" />
               <a href="#change-email">Change email</a>
             </div>
             <div className="info-field">
-              <label>Lives in (optional)</label>
+              <label>Address</label>
               <input type="text" value="Hayward" />
             </div>
             <div className="info-field">
@@ -173,6 +166,38 @@ export const Profile = () => {
               <label>Zip</label>
               <input type="text" value="94544" />
             </div>
+            <div className="info-field">
+        <label>Height</label>
+        <input
+          type="text"
+          value={result ? JSON.stringify(result.message.height) : "Upload Image"}
+          readOnly
+        />
+      </div>
+      <div className="info-field">
+        <label>Chest</label>
+        <input
+          type="text"
+          value={result ? JSON.stringify(result.message.chest.toFixed(2)) : "Upload Image"}
+          readOnly
+        />
+      </div>
+      <div className="info-field">
+        <label>Waist</label>
+        <input
+          type="text"
+          value={result ? JSON.stringify(result.message.waist.toFixed(2)) : "Upload Image"}
+          readOnly
+        />
+      </div>
+      <div className="info-field">
+        <label>Hips</label>
+        <input
+          type="text"
+          value={result ? JSON.stringify(result.message.hips.toFixed(1)) : "Upload Image"}
+          readOnly
+        />
+      </div>
             <div className="checkbox">
               <input type="checkbox" checked />
               <label>
@@ -192,7 +217,6 @@ export const Profile = () => {
         </form>
       </div>
 
-      {/* Full Body Image Capture Section */}
       <div className={`capture-section ${isCameraOpen ? "expanded" : ""}`}>
         <h3 className="camera-header">Upload Full Body Image</h3>
         <div className="upload-box">
@@ -206,7 +230,6 @@ export const Profile = () => {
               />
               <div style={{
                   display: "flex",
-                  // justifyContent: "space-between",
                   marginTop: "10px",
                 }} 
                 >
@@ -215,7 +238,7 @@ export const Profile = () => {
                   style={{
                     padding: "10px",
                     borderRadius: "5px",
-                    backgroundColor: '#5cb85c',
+                    backgroundColor: "#5cb85c",
                     color: "white",
                     border: "none",
                     cursor: "pointer",
@@ -350,7 +373,7 @@ export const Profile = () => {
           )}
         </div>
         {/* {result && (
-          <div className="result-section">
+          <div>
             <h4>Result:</h4>
             <p>{JSON.stringify(result)}</p>
           </div>
