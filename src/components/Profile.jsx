@@ -6,11 +6,9 @@ import "./Profile.css";
 export const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const webcamRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [isAnalyzed, setIsAnalyzed] = useState(false);
-  const webcamRef = useRef(null);
 
   const openCamera = () => {
     setIsCameraOpen(true);
@@ -25,7 +23,10 @@ export const Profile = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setSelectedImage(imageSrc);
-      setIsCameraOpen(false); 
+      setIsCameraOpen(false);  
+      const file = base64ToFile(imageSrc, "captured-image.jpg");
+
+      uploadImage(file);
       const file = base64ToFile(imageSrc, "captured-image.jpg");
 
       uploadImage(file);
@@ -59,11 +60,7 @@ export const Profile = () => {
         const cloudinaryUrl = response.data.secure_url;
         console.log("Cloudinary URL:", cloudinaryUrl);
 
-        if (isAnalyzing) {
-          sendUrlToBackend(cloudinaryUrl);
-          setIsAnalyzing(false);
-          setIsAnalyzed(true);
-        }
+        sendUrlToBackend(cloudinaryUrl);
       })
       .catch((error) => {
         console.error("Error uploading image to Cloudinary:", error);
@@ -71,13 +68,13 @@ export const Profile = () => {
   };
 
   const sendUrlToBackend = (cloudinaryUrl) => {
-    setLoading(true);
+    setLoading(true); 
     Axios.post("https://return-reduce-backend.onrender.com/getSize", {
       url: cloudinaryUrl,
     })
       .then((response) => {
         setResult(response.data);
-        setLoading(false);
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error sending URL to backend:", error);
@@ -95,12 +92,6 @@ export const Profile = () => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleAnalyze = () => {
-    setIsAnalyzing(true);
-    const file = base64ToFile(selectedImage, "analyzed-image.jpg");
-    uploadImage(file);
   };
 
   return (
@@ -199,41 +190,54 @@ export const Profile = () => {
         <h3>Upload Full Body Image</h3>
         <div className="upload-box">
           {isCameraOpen ? (
-            <div className="camera-container">
+            <div>
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 style={{ width: "100%", height: "auto" }}
               />
-              <div className="camera-buttons">
-                <button onClick={capture} className="capture-button">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "10px",
+                }}
+              >
+                <button
+                  onClick={capture}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: "blue",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                    marginRight: "10px",
+                  }}
+                >
                   Capture Photo
                 </button>
-                <button onClick={closeCamera} className="close-button">
+                <button
+                  onClick={closeCamera}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    flex: "1",
+                  }}
+                >
                   Close Camera
                 </button>
               </div>
             </div>
           ) : (
             <div>
-              {selectedImage && !isAnalyzed ? (
-                <div>
-                  <img
-                    src={selectedImage}
-                    alt="Selected"
-                    className="preview-img"
-                  />
-                  <div className="post-capture-buttons">
-                    <button onClick={handleAnalyze} className="analyze-button">
-                      Analyze Photo
-                    </button>
-                    <button onClick={openCamera} className="retake-button">
-                      Retake Photo
-                    </button>
-                  </div>
-                </div>
-              ) : selectedImage && isAnalyzed ? (
+              {selectedImage ? (
                 <div>
                   <img
                     src={selectedImage}
@@ -244,12 +248,38 @@ export const Profile = () => {
                 </div>
               ) : (
                 <>
-                  <button onClick={openCamera} className="open-camera-button">
+                  <button
+                    onClick={openCamera}
+                    style={{
+                      padding: "10px",
+                      borderRadius: "5px",
+                      backgroundColor: "blue",
+                      color: "white",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
                     Open Camera
                   </button>
                   <p style={{ margin: "10px 0" }}>OR</p>
-                  <label htmlFor="file-input" className="file-input-label">
-                    <p className="file-input-text">Choose from Device</p>
+                  <label
+                    htmlFor="file-input"
+                    style={{
+                      padding: "10px",
+                      borderRadius: "5px",
+                      border: "1px solid #ccc",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <p
+                      style={{
+                        textAlign: "center",
+                        margin: "0",
+                        color: "#333",
+                      }}
+                    >
+                      Choose from Device
+                    </p>
                   </label>
                   <input
                     id="file-input"
@@ -264,12 +294,12 @@ export const Profile = () => {
           )}
         </div>
         {loading && <p>Loading...</p>}
-        {/* {result && (
+        {result && (
           <div className="result-section">
             <h4>Result:</h4>
             <p>{JSON.stringify(result)}</p>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
