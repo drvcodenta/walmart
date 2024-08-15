@@ -1,48 +1,41 @@
-.whole-page{
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-}
-.image-text{
-    display:flex;
-    flex-direction: row;
-    margin-left: 10px;
-}
-.lapy img{
-    width:180px;
-    height:150px;
-}
-.details span{
-    color:blue;
-}
-.details span:hover{
-    cursor:pointer;
-    color: rgb(7, 189, 250);
+/* General Styles */
+.whole-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  padding: 10px;
 }
 
-.close-button{
-  display: "flex";
-  justify-content: "center";
-  margin-bottom: "10px";
-  margin-left: "68px";
-  margin-top: "10px";
-}
-/* .reason{
-  margin-top: -8px;;
-    display: flex;
-    justify-content: space-between;
+.image-text {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-.reason input{
-  border:1px solid grey;
-    width:450px;
-    height:30px;
-    margin-right: 4px;;
-    padding-left: 7px;
-    padding-top: 5px;
-   
-} */
+.lapy img {
+  width: 180px;
+  height: 150px;
+}
 
+.details span {
+  color: blue;
+}
+
+.details span:hover {
+  cursor: pointer;
+  color: rgb(7, 189, 250);
+}
+
+.close-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+}
 
 .reason {
   display: flex;
@@ -51,115 +44,222 @@
 }
 
 .reason .MuiFormControl-root {
-  width: 280px; /* Set the width of the dropdown to 250px */
-  margin-right: 20px; /* Space between the dropdown and text input */
+  width: 280px;
+  margin-right: 20px;
 }
 
 .reason input[type="text"] {
-  width: 280px; /* Set the width of the text input to 250px */
-  height: 60px; /* Keep the increased height */
-  padding: 0 16px; /* Padding for the text input */
+  width: 280px;
+  height: 60px;
+  padding: 0 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 18px; /* Larger font size */
+  font-size: 18px;
 }
 
-
-
-
-
-.class{
-    padding-left: 13px;;
+.class {
+  padding-left: 13px;
 }
 
 .image-section {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center; 
-    margin-top: 15px; 
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.before, .after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 200px;
+}
+
+.before img {
+  border: 1px solid grey;
+  width: 180px;
+  height: auto;
+}
+
+.before p, .after p {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.return-img {
+  border: 1px solid grey;
+  width: 30%;
+  height: 200px;
+}
+
+.upload-box {
+  width: 80%;
+  height: 200px;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.upload-label {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+.upload-label p {
+  margin: 0;
+}
+
+.upload-label p:hover {
+  cursor: pointer;
+}
+
+.preview-img {
+  width: 80%;
+  height: 60%;
+  border-radius: 5px;
+  margin-top: 80px;
+}
+
+.review {
+  margin-top: 5px;
+  padding-top: 5px;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  justify-content: center;
+  padding: 7px;
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+}
+
+.confirm {
+  margin-left: 220px;
+  margin-top: 110px;
+}
+
+.review:hover {
+  background-color: red;
+  border: none;
+}
+
+.capture-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .confirm {
+      margin-left: 180px;
   }
-  
+
+  .image-section {
+      flex-direction: column;
+      align-items: center;
+  }
+
   .before, .after {
-   
-    display: flex;
-    flex-direction: column; /* Align content vertically within each section */
-    align-items: center; 
-   
-    width:30%;
-    height:200px;
-  }
-  
-  .before img {
-    border:1px solid grey;
-    width: 180px; /* Adjust the width of the image */
-    height: auto; /* Keep the aspect ratio of the image */
-    /* margin-top: 10px;  */
-  }
-  
-  .before p, .after p {
-    font-weight: bold; /* Make the text bold */
-    margin-bottom: 15px; /* Add space between the text and the image */
-  }
-  .return-img{
-    border:1px solid grey;
-    width:30%;
-    height: 200px;
+      width: 50%;
   }
 
-  
-  
+  .return-img {
+      width: 100%;
+      height: auto;
+  }
+
+  .review {
+      width: 90px;
+      height: 28px;
+      font-size: 16px;
+  }
+
+  .reason .MuiFormControl-root,
+  .reason input[type="text"] {
+      width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .confirm {
+      margin-left: 100px;
+  }
+
+  .image-text {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+  }
+
+  .before, .after {
+      width: 80%;
+      height: auto;
+  }
+
+  .lapy img {
+      width: 150px;
+      height: 120px;
+  }
+
+  .review {
+      width: 80px;
+      height: 26px;
+      font-size: 14px;
+  }
+
+  .reason .MuiFormControl-root,
+  .reason input[type="text"] {
+      width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirm {
+      margin-left: 20px;
+      margin-top: 50px;
+  }
+
+  .before, .after {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  .review {
+      width: 70px;
+      height: 24px;
+      font-size: 12px;
+  }
+
+  .reason .MuiFormControl-root,
+  .reason input[type="text"] {
+      width: 100%;
+      height: 50px;
+  }
+
+  .reason input[type="text"] {
+      font-size: 16px;
+  }
+
   .upload-box {
-    width: 80%;
-    height: 200px;
-    border: 2px dashed #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
+      width: 100%;
+      height: 180px;
   }
-  
+
   .upload-label {
-    text-align: center;
-    color: #777;
-    font-size: 14px;
+      font-size: 12px;
   }
-  
-  .upload-label p {
-    margin: 0;
-  }
-  .upload-label p:hover{
-    cursor: pointer;
-  }
-  
-  .preview-img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  .review{
-    margin-top: 5px;;
-    padding-top: 5px;
-    width:100px;
-    height:30px;
-    border-radius: 20px;
-    justify-content: center;
-    padding: 7px;;
-    align-items: center;
-    display: flex;
-    font-size:18px;
-  }
-  .confirm{
-    margin-left: 220px;
-    margin-top: 110px;
-    /* background-color: green; */
-
-
-  }
-  .review:hover{
-    background-color: red;
-    border:none;
-  }
+}
