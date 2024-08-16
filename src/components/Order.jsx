@@ -3,7 +3,7 @@ import { FaCaretDown } from "react-icons/fa";
 import laptop from "../images/laptop.jpg";
 import "./Order.css";
 import { useNavigate } from "react-router-dom";
-import mug from "../images/mug.jpg";
+import mug from "../images/mug.png";
 
 export const Order = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const Order = () => {
         </div>
         <div className="delivery">
           <h2>Delivered</h2>
-          <p>Deliverd on Sat,11 Aug</p>
+          <p>Deliverd on Sat,10 Aug</p>
           <div className="rate">
             <p>Rate this Product</p>
             <div className="stars">
@@ -48,7 +48,7 @@ export const Order = () => {
         </div>
         <div className="delivery">
           <h2>Delivered</h2>
-          <p>Delivered on Sat,9 Aug</p>
+          <p>Delivered on Sat,10 Aug</p>
           <div className="rate">
             <p>Rate this Product</p>
             <div className="stars">

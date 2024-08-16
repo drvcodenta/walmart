@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import "./Return.css";
-import laptop from "../images/laptop.jpg";
+// import laptop from "../images/laptop.jpg";
+import mug from "../images/mug.png"
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Axios from "axios";
 
