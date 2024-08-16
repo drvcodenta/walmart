@@ -24,7 +24,7 @@ export const Return = () => {
     setIsPromptVisible(false);
   };
 
-  const productAtDeliveryUrl = "https://res.cloudinary.com/dctz4wuix/image/upload/v1723644688/grgnoby2xbbdbznud0sn.png";
+  const productAtDeliveryUrl = "https://res.cloudinary.com/dvmk4d0kb/image/upload/v1723581860/Screenshot_2024-08-14_021303_vswthw.png";
 
   const handleChange = (event) => {
     setReason(event.target.value);
@@ -142,15 +142,15 @@ export const Return = () => {
     <div className="whole-page">
       <div className="image-text">
         <div className="lapy">
-          <img src={laptop} alt="Laptop" />
+          <img src={mug} alt="mug" />
         </div>
 
         <div className="class">
           <h2>Return Request</h2>
           <div className="details">
-            <p>HP Laptop Ryzen 3</p>
-            <p>45K</p>
-            <h2>Total Refund 45K</h2>
+            <p>Kaameri Bazaar Cool brother Printed Coffee Mug</p>
+            <p>₹299</p>
+            <h2>Total Refund ₹299</h2>
             <p>
               Convenience Fee ₹15.00 is not refundable.<span>Read policy.</span>
             </p>

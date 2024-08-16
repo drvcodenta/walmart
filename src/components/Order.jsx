@@ -2,8 +2,8 @@ import React from "react";
 import { FaCaretDown } from "react-icons/fa";
 import laptop from "../images/laptop.jpg";
 import "./Order.css";
-// import { FaArrowDown19 } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import mug from "../images/mug.jpg";
 
 export const Order = () => {
   const navigate = useNavigate();
@@ -21,12 +21,12 @@ export const Order = () => {
 
       <div className="orderr">
         <div className="orders">
-          <img src={laptop} />
-          <p>Laptop ₹53k</p>
+          <img src={mug} />
+          <p>Mug ₹299</p>
         </div>
         <div className="delivery">
-          <h2>Deliverd</h2>
-          <p>Deliverd on Sat,10 Aug</p>
+          <h2>Delivered</h2>
+          <p>Deliverd on Sat,11 Aug</p>
           <div className="rate">
             <p>Rate this Product</p>
             <div className="stars">
@@ -47,8 +47,8 @@ export const Order = () => {
           <p>Laptop ₹53k</p>
         </div>
         <div className="delivery">
-          <h2>Deliverd</h2>
-          <p>Deliverd on Sat,10 Aug</p>
+          <h2>Delivered</h2>
+          <p>Delivered on Sat,9 Aug</p>
           <div className="rate">
             <p>Rate this Product</p>
             <div className="stars">
@@ -69,8 +69,8 @@ export const Order = () => {
           <p>Laptop ₹53k</p>
         </div>
         <div className="delivery">
-          <h2>Deliverd</h2>
-          <p>Deliverd on Sat,10 Aug</p>
+          <h2>Delivered</h2>
+          <p>Delivered on Sat,10 Aug</p>
           <div className="rate">
             <p>Rate this Product</p>
             <div className="stars">
